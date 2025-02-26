@@ -1,0 +1,2 @@
+#colocar os nomes das coisas que deverão ser ignoradas e nao enviadas ao github
+node_modules
