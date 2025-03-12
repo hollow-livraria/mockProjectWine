@@ -9,11 +9,11 @@ import deleteUser from "../controllers/user/deleteUser.js";
 
 const router = express.Router();
 
-router.get("/", getUser);
 router.get("/list", listUser);
+router.get("/:id", getUser);
 router.post("/", postUser);
-router.put("/", putUser);
+router.put("/:id", putUser);
 router.patch("/", patchUser);
-router.delete("/", deleteUser);
+router.delete("/:id", deleteUser);
 
 export default router;

@@ -1,11 +1,18 @@
-export default function deleteUser(req, res) {
+import { remove } from "../../models/userModel.js";
+
+export default async function deleteUser(req, res) {
+
+  const { id } = req.params
+
+  const result = await remove(+id)
+
+  if(!result) {
+    return res.status(404).json({
+      error: "usuario nao encontrado"
+    })
+  }
+
   return res.json({
-    message: "O usuario foi totalmente obliterado.",
-    user: {
-      name: "livrariazin",
-      email: "livros@gmail.com",
-      cpf: "999.999.999-99",
-      telefone: "99 9999-9999",
-    },
-  });
+    user: result
+  })
 }
