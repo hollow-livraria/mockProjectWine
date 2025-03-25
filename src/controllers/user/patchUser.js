@@ -1,17 +1,19 @@
-export default function patchUser(req, res) {
-  return res.json({
-    message: "aqui esta o usuario atualizado",
-    user: {
-      id: 1,
-      name: "livrariazin",
-      email: "livros@gmail.com",
-      senha: "placeholder",
-      nascimento: "07/07/2004",
-      endereço: "Rua principal",
-      cidade: "Goias",
-      estado: "MG",
-      cpf: "999.999.999-99",
-      telefone: "99 9999-9999",
-    },
-  });
+import { updateName } from "../../models/userModel";
+
+export default async function patchUser(req, res) {
+
+    const {id} = req.params
+    const {name} = req.body
+
+    const result = await updateName(+id, name)
+
+    if(!result) {
+        return res.status(404).json({
+            error: "usuario nao encontrado"
+        })
+    }
+
+    return res.json({
+        user: result
+    })
 }
